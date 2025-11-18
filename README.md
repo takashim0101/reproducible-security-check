@@ -60,6 +60,8 @@ This diagram shows the two layers of protection:
 1.  **Local:** The `pre-commit` hook prevents secrets from ever entering your local repository history.
 2.  **Remote:** GitHub Actions provides a second layer of defense, scanning all code that is pushed to the shared repository.
 
+*Note: "Secret found?" refers to sensitive information such as API keys, passwords, tokens, or other credentials that should not be exposed in code.*
+
 ---
 
 
@@ -240,9 +242,4 @@ This project, while a demonstration, mirrors real-world software development cha
     3.  Adding a **"Best Practices in Action"** section to explain the reasoning and benefits behind our technical choices.
     This process highlighted the importance of clear communication in technical documentation.
 
-### 3. Challenge: Maintaining Professionalism and Quality
-- **Problem:** An unintentional error led to a foreign language (Korean) appearing in the documentation. This small error could undermine the professional appearance of the project.
-- **Solution:** The issue was promptly identified and corrected. This served as a good reminder that attention to detail is crucial. Just as we automate scans for secrets in code, we must also be diligent in proofreading and reviewing our documentation to maintain a high standard of quality.
-
----
 
