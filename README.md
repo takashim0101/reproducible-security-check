@@ -23,34 +23,34 @@ The following diagram illustrates the complete security workflow, from local dev
 
 ```mermaid
 graph TD
-    subgraph Local Environment
-        A[Developer writes code]
-        B{git commit}
+    subgraph "Local Environment"
+        A["Developer writes code"]
+        B{"git commit"}
         C{"pre-commit hook (ggshield)"}
-        D{Secret found?}
-        E[Commit BLOCKED]
-        F[Commit successful]
+        D{"Secret found?"}
+        E["Commit BLOCKED"]
+        F["Commit successful"]
 
         A --> B
         B --> C
         C --> D
-        D -- Yes --> E
-        D -- No --> F
+        D -- "Yes" --> E
+        D -- "No" --> F
     end
 
-    subgraph Remote Environment (GitHub)
-        G[Developer pushes to GitHub]
+    subgraph "Remote Environment (GitHub)"
+        G["Developer pushes to GitHub"]
         H{"GitHub Actions (CI/CD)"}
-        I{ggshield scan}
-        J{Secret found?}
-        K[Workflow FAILS]
-        L[Workflow succeeds]
+        I{"ggshield scan"}
+        J{"Secret found?"}
+        K["Workflow FAILS"]
+        L["Workflow succeeds"]
 
         G --> H
         H --> I
         I --> J
-        J -- Yes --> K
-        J -- No --> L
+        J -- "Yes" --> K
+        J -- "No" --> L
     end
 
     F --> G
