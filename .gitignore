@@ -12,6 +12,7 @@ Thumbs.db
 
 # Ignore screenshots if not needed
 *.png
+!images/pre-commit-success.png
 
 # Ignore logs
 *.log
