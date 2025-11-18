@@ -25,14 +25,14 @@ The following diagram illustrates the complete security workflow, from local dev
 graph TD
     subgraph Local Environment
         A[Developer writes code] --> B{git commit};
-        B --> C{pre-commit hook (ggshield)};
+        B --> C{"pre-commit hook (ggshield)"};
         C --> D{Secret found?};
         D -- Yes --> E[Commit BLOCKED];
         D -- No --> F[Commit successful];
     end
 
     subgraph Remote Environment (GitHub)
-        G[Developer pushes to GitHub] --> H{GitHub Actions (CI/CD)};
+        G[Developer pushes to GitHub] --> H{"GitHub Actions (CI/CD)"};
         H --> I{ggshield scan};
         I --> J{Secret found?};
         J -- Yes --> K[Workflow FAILS];
