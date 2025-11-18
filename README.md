@@ -145,6 +145,12 @@ This repository is validated through automated and reproducible steps:
     -   The pre-commit hook automatically scans any changes you try to commit.
     -   If a secret is detected, the commit is blocked, preventing it from being saved to your local repository.
 
+    **Example of a successful commit:**
+
+    Here is a screenshot showing the `ggshield` pre-commit hook successfully scanning for secrets before a commit.
+
+    ![ggshield pre-commit hook in action](images/pre-commit-success.png)
+
 4.  **Automated Remote Scanning (CI/CD):**
     -   The GitHub Actions workflow (`.github/workflows/secret-scan.yml`) automatically scans the code on every push and pull request to the remote repository on GitHub.
     -   A nightly scan is also scheduled for continuous monitoring.
