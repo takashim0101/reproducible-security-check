@@ -24,22 +24,36 @@ The following diagram illustrates the complete security workflow, from local dev
 ```mermaid
 graph TD
     subgraph Local Environment
-        A[Developer writes code] --> B{git commit};
-        B --> C{"pre-commit hook (ggshield)"};
-        C --> D{Secret found?};
-        D -- Yes --> E[Commit BLOCKED];
-        D -- No --> F[Commit successful];
+        A[Developer writes code]
+        B{git commit}
+        C{"pre-commit hook (ggshield)"}
+        D{Secret found?}
+        E[Commit BLOCKED]
+        F[Commit successful]
+
+        A --> B
+        B --> C
+        C --> D
+        D -- Yes --> E
+        D -- No --> F
     end
 
     subgraph Remote Environment (GitHub)
-        G[Developer pushes to GitHub] --> H{"GitHub Actions (CI/CD)"};
-        H --> I{ggshield scan};
-        I --> J{Secret found?};
-        J -- Yes --> K[Workflow FAILS];
-        J -- No --> L[Workflow succeeds];
+        G[Developer pushes to GitHub]
+        H{"GitHub Actions (CI/CD)"}
+        I{ggshield scan}
+        J{Secret found?}
+        K[Workflow FAILS]
+        L[Workflow succeeds]
+
+        G --> H
+        H --> I
+        I --> J
+        J -- Yes --> K
+        J -- No --> L
     end
 
-    F --> G;
+    F --> G
 ```
 
 This diagram shows the two layers of protection:
