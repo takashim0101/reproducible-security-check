@@ -12,3 +12,23 @@ Thumbs.db
 
 # Ignore screenshots if not needed
 *.png
+
+# Ignore logs
+*.log
+
+# Ignore temporary files
+*.tmp
+*.swp
+
+# Ignore IDE/editor settings
+.vscode/
+.idea/
+
+# Ignore build artifacts
+build/
+dist/
+*.egg-info/
+
+
+
+

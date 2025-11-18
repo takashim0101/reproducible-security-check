@@ -52,7 +52,25 @@ This workflow ensures:
 
 - [ggshield](https://github.com/GitGuardian/ggshield) — CLI tool for detecting secrets in source code  
 - [GitHub Actions](https://docs.github.com/en/actions) — CI/CD automation platform  
-- [pre-commit](https://pre-commit.com/) — Framework for managing and maintaining multi-language pre-commit hooks
+- [pre-commit](https://pre-commit.com/) — Framework for managing and maintaining multi-language pre-commit hooks  
 
+---
 
+## 🌐 API Connectivity Notes
+
+- ggshield normally verifies scans via GitGuardian API (`api.gitguardian.com`).  
+- If the API is unreachable due to network restrictions, use local scanning:  
+  ```bash
+  ggshield secret scan path .
+---
+
+## ☁️ Cloud Environment Notes
+
+This workflow has been tested in environments with restricted connectivity, including Google-related networks.
+
+### Key points
+- ggshield scans remain reproducible even when API calls are blocked.  
+- Local scanning (`ggshield secret scan path .`) ensures security validation without external dependencies.  
+- `.gitignore` prevents environment-specific artifacts (e.g., virtual environments, cache files) from being committed.  
+- The workflow is portable across cloud environments (Google, Azure, AWS) and remains aligned with public sector reproducibility requirements.  
 
