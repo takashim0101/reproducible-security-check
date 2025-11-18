@@ -5,7 +5,9 @@
 This repository demonstrates reproducible security hygiene for portfolio preparation.  
 All files here are placeholders; actual content is not exposed.
 
-## Security & Reproducibility Workflow
+---
+
+## 🔒 Security & Reproducibility Workflow
 
 This repository was validated through the following reproducible steps:
 
@@ -15,18 +17,23 @@ This repository was validated through the following reproducible steps:
 4. Executed GGShield scan: `ggshield secret scan repo .`
 5. Scan result: **No secrets have been found**
 
-## Purpose
+---
+
+## 🎯 Purpose
 
 This workflow ensures:
 
 - ✅ Transparent and reproducible security practices  
 - ✅ Verification that no sensitive information is committed  
 - ✅ Audit-ready structure aligned with public sector trust requirements  
-- ✅ Educational reusability for reproducible DevOps training
+- ✅ Educational reusability for reproducible DevOps training  
 
-## Notes
+---
+
+## 📝 Notes
 
 - This repository is designed for demonstration and documentation purposes.  
 - File contents are intentionally minimal and non-sensitive.  
-- The workflow is portable across any Git-tracked project folder.
+- The workflow is portable across any Git-tracked project folder.  
+
 
