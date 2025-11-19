@@ -275,4 +275,7 @@ This project, while a demonstration, mirrors real-world software development cha
     3.  Adding a **"Best Practices in Action"** section to explain the reasoning and benefits behind our technical choices.
     This process highlighted the importance of clear communication in technical documentation.
 
+---
+*README last updated to trigger workflow re-run.*
+
 
