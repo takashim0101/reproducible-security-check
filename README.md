@@ -290,6 +290,15 @@ This project, while a demonstration, mirrors real-world software development cha
     -   **`.env` Integration:** The solution involved modifying the `.pre-commit-config.yaml` to explicitly load the `.env` file using `python-dotenv` before `ggshield` executes. This ensures that the local pre-commit hook has access to the `GG_API_KEY` defined in the `.env` file, providing a consistent and secure way to manage local secrets for pre-commit checks.
     -   **Environment Context:** This emphasized that pre-commit hooks run in a specific environment that might not inherit all shell environment variables or automatically load `.env` files, requiring explicit configuration.
 
+### 5. Challenge: Inconsistent `ggshield` CLI Command Structure & Action Usage
+
+- **Problem:** The `gitguardian/ggshield-action@v1` and the `gitguardian/ggshield:v1.45.0` Docker image exhibited inconsistent command structures, leading to "Error: No such command 'secret'." and "Error: No such command 'scan'." This required extensive debugging to determine the correct `ggshield` CLI invocation.
+- **Solution & Learning:**
+    -   **Direct CLI Execution:** The most robust solution was to bypass the `ggshield-action` entirely and directly execute the `ggshield` CLI within a `docker run` command in the GitHub Actions workflow. This provided granular control over the command and its arguments.
+    -   **Command Structure Discovery:** Through iterative debugging, including running `ggshield --version` and `ggshield -h` inside the container, it was definitively determined that for `ggshield` version `1.45.0`, the correct command structure for scanning secrets is `ggshield secret scan path /repo --recursive --verbose`.
+    -   **Version Incompatibility:** This highlighted potential version incompatibilities or unexpected behavior when relying on wrapper actions, emphasizing the value of understanding the underlying CLI tool's exact command structure.
+
+
 ---
 *README last updated to trigger workflow re-run.*
 
