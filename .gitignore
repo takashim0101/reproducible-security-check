@@ -33,6 +33,13 @@ dist/
 # Ignore environment variables file
 .env
 
+venv/
+venv-ggshield/
+*.whl
+*.pyd
+.git/
+
+
 
 
 
