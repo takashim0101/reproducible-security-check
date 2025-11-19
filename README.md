@@ -275,6 +275,21 @@ This project, while a demonstration, mirrors real-world software development cha
     3.  Adding a **"Best Practices in Action"** section to explain the reasoning and benefits behind our technical choices.
     This process highlighted the importance of clear communication in technical documentation.
 
+### 3. Challenge: Persistent "Invalid GitGuardian API Key" in CI/CD
+
+- **Problem:** Despite correctly configuring the GitHub Actions workflow to pass the `GG_API_KEY` secret and repeatedly regenerating the GitGuardian Personal Access Token, the CI/CD pipeline consistently failed with "Invalid GitGuardian API key."
+- **Solution & Learning:** The root cause was a subtle but critical misunderstanding:
+    -   **Token ID vs. Token String:** The user was mistakenly copying the *ID* of the GitGuardian Personal Access Token (a 36-character UUID) instead of the *actual, full token string* (a much longer alphanumeric string, typically 64+ characters) into the GitHub Secret.
+    -   **Diagnostic Step:** A diagnostic step was added to the workflow (`echo "Length of GG_API_KEY: ${#GG_API_KEY}"`) to print the masked length of the secret. This revealed the 36-character length, immediately pointing to the token ID as the issue.
+    -   **Importance of Exact Copying:** This highlighted the absolute necessity of carefully copying the *entire* token string immediately upon generation, as it's often only displayed once.
+
+### 4. Challenge: Local Pre-commit Hook Authentication
+
+- **Problem:** Even after the GitHub Actions workflow was addressed, the local `ggshield` pre-commit hook started failing with "Invalid GitGuardian API key" during `git commit`.
+- **Solution & Learning:** The pre-commit hook's environment was not automatically loading the `GG_API_KEY` from the local environment or the `.env` file.
+    -   **`.env` Integration:** The solution involved modifying the `.pre-commit-config.yaml` to explicitly load the `.env` file using `python-dotenv` before `ggshield` executes. This ensures that the local pre-commit hook has access to the `GG_API_KEY` defined in the `.env` file, providing a consistent and secure way to manage local secrets for pre-commit checks.
+    -   **Environment Context:** This emphasized that pre-commit hooks run in a specific environment that might not inherit all shell environment variables or automatically load `.env` files, requiring explicit configuration.
+
 ---
 *README last updated to trigger workflow re-run.*
 
