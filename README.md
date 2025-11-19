@@ -183,6 +183,39 @@ This repository is validated through automated and reproducible steps:
     -   The GitHub Actions workflow (`.github/workflows/secret-scan.yml`) automatically scans the code on every push and pull request to the remote repository on GitHub.
     -   A nightly scan is also scheduled for continuous monitoring.
 
+### 5. GitHub Actions Setup for ggshield
+
+To ensure `ggshield` can authenticate and scan your repository in GitHub Actions, you need to provide it with a GitGuardian API Key.
+
+#### a. Obtain your GitGuardian API Key
+1.  Log in to your GitGuardian dashboard.
+2.  Navigate to **API** -> **Personal access tokens**.
+3.  Generate a new Personal Access Token. Copy this token, as it will only be shown once.
+
+#### b. Create a GitHub Repository Secret
+1.  In your GitHub repository, go to **Settings** -> **Secrets and variables** -> **Actions**.
+2.  Click on **New repository secret**.
+3.  Set the **Name** to `GG_API_KEY`.
+4.  Paste your GitGuardian API Key (obtained in step 'a') into the **Secret** field.
+5.  Click **Add secret**.
+
+#### c. Update GitHub Actions Workflow
+Ensure your `.github/workflows/secret-scan.yml` file includes the `GITGUARDIAN_API_KEY` environment variable, referencing the secret you just created. The updated section should look like this:
+
+```yaml
+      - name: Run ggshield scan
+        env:
+          GITGUARDIAN_API_KEY: ${{ secrets.GG_API_KEY }}
+        run: ggshield secret scan repo .
+```
+
+#### d. Trigger the Workflow
+After making these changes and pushing the updated `secret-scan.yml` to your repository, trigger a new workflow run:
+1.  **Push a new commit:** Make a small change to any file, commit, and push.
+2.  **Manually from GitHub:** Go to your repository's **Actions** tab, select "Secret Scan" workflow, and click "Run workflow".
+
+This setup ensures that `ggshield` can securely authenticate and perform secret scans within your CI/CD pipeline.
+
 ---
 
 ## 📝 Notes
